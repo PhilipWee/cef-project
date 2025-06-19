@@ -9,6 +9,8 @@ cmake_minimum_required(VERSION 3.21)
 
 # Only generate Debug and Release configuration types.
 set(CMAKE_CONFIGURATION_TYPES Debug Release)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 
 # Project name.
 project(cef)
@@ -173,6 +175,7 @@ endif()
 
 # Display configuration settings.
 PRINT_CEF_CONFIG()
+
 
 if(NOT WITH_EXAMPLES)
   message(STATUS "")

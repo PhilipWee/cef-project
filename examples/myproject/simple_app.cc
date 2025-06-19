@@ -5,6 +5,7 @@
 #include "examples/myproject/simple_app.h"
 
 #include <string>
+#include <iostream>
 
 #include "include/cef_browser.h"
 #include "include/cef_command_line.h"
@@ -126,6 +127,7 @@ void SimpleApp::OnContextInitialized() {
   // that instead of the default URL.
   url = command_line->GetSwitchValue("url");
   if (url.empty()) {
+    // std::cout << "Hello from CEF!" << std::endl;
     url = "https://www.youtube.com";
   }
 
