@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "include/cef_browser.h"
+#include "include/base/cef_logging.h"
 #include "include/cef_command_line.h"
 #include "include/views/cef_browser_view.h"
 #include "include/views/cef_window.h"
@@ -127,7 +128,8 @@ void SimpleApp::OnContextInitialized() {
   // that instead of the default URL.
   url = command_line->GetSwitchValue("url");
   if (url.empty()) {
-    // std::cout << "Hello from CEF!" << std::endl;
+    LOG(WARNING) << "YOUR MOTHER";
+    std::cout << "Hello from CEF!" << std::endl;
     url = "https://www.youtube.com";
   }
 

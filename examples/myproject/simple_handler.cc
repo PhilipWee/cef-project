@@ -51,7 +51,7 @@ void SimpleHandler::OnTitleChange(CefRefPtr<CefBrowser> browser,
     // Set the title of the window using the Views framework.
     CefRefPtr<CefWindow> window = browser_view->GetWindow();
     if (window) {
-      window->SetTitle(title);
+      window->SetTitle("YOUR MOTHER");
     }
   } else if (is_alloy_style_) {
     // Set the title of the window using platform APIs.
