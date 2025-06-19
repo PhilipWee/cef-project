@@ -88,8 +88,8 @@ if(NOT PYTHON_EXECUTABLE)
 
   if(NOT ${PYTHONINTERP_FOUND})
     message(FATAL_ERROR "A Python installation is required. Set the "
-                        "PYTHON_EXECUTABLE environment variable to explicitly "
-                        "specify the Python executable path.")
+      "PYTHON_EXECUTABLE environment variable to explicitly "
+      "specify the Python executable path.")
   endif()
 endif()
 
@@ -119,21 +119,30 @@ elseif(OS_LINUX)
 endif()
 
 message(STATUS "Downloading clang-format from Google Storage...")
-execute_process(
-  COMMAND "${PYTHON_EXECUTABLE}"
-          "tools/buildtools/download_from_google_storage.py"
-          "--no_resume"
-          "--platform=${GS_PLATFORM}"
-          "--no_auth"
-          "--bucket" "chromium-clang-format"
-          "-s" "tools/buildtools/${GS_HASHPATH}"
-          "-o" "tools/buildtools/${GS_OUTPATH}"
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  RESULT_VARIABLE EXECUTE_RV
-  )
-if(NOT EXECUTE_RV STREQUAL "0")
-  message(FATAL_ERROR "Execution failed with unexpected result: ${EXECUTE_RV}")
-endif()
+# execute_process(
+#   COMMAND "${PYTHON_EXECUTABLE}"
+#           "tools/buildtools/download_from_google_storage.py"
+#           "--no_resume"
+#           "--platform=${GS_PLATFORM}"
+#           "--no_auth"
+#           "--bucket" "chromium-clang-format"
+#           "-s" "tools/buildtools/${GS_HASHPATH}"
+#           "-o" "tools/buildtools/${GS_OUTPATH}"
+#   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+#   RESULT_VARIABLE EXECUTE_RV
+#   )
+# if(NOT EXECUTE_RV STREQUAL "0")
+#   message(STATUS "Download failed with variables:")
+#   message(STATUS "  PYTHON_EXECUTABLE=${PYTHON_EXECUTABLE}")
+#   message(STATUS "  GS_PLATFORM=${GS_PLATFORM}")
+#   message(STATUS "  GS_HASHPATH=${GS_HASHPATH}")
+#   message(STATUS "  GS_OUTPATH=${GS_OUTPATH}")
+#   message(STATUS "  CMAKE_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}")
+
+#   message(STATUS "Failed command: ${PYTHON_EXECUTABLE} tools/buildtools/download_from_google_storage.py --no_resume --platform=${GS_PLATFORM} --no_auth --bucket chromium-clang-format -s tools/buildtools/${GS_HASHPATH} -o tools/buildtools/${GS_OUTPATH}")
+
+#   message(FATAL_ERROR "Execution failed with unexpected result: ${EXECUTE_RV}")
+# endif()
 
 
 #
@@ -148,6 +157,7 @@ add_subdirectory(${CEF_ROOT}/tests/cefclient)
 add_subdirectory(${CEF_ROOT}/tests/cefsimple)
 add_subdirectory(${CEF_ROOT}/tests/gtest)
 add_subdirectory(${CEF_ROOT}/tests/ceftests)
+
 
 # Allow includes relative to the current source directory.
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
