@@ -6,7 +6,7 @@
 
 #include "include/cef_command_line.h"
 #include "include/cef_sandbox_win.h"
-#include "examples/myproject/simple_app.h"
+#include "examples/myproject/simple_app.hpp"
 
 // When generating projects with CMake the CEF_USE_SANDBOX value will be defined
 // automatically if using the required compiler version. Pass -DUSE_SANDBOX=OFF

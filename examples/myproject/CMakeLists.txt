@@ -8,8 +8,7 @@
 
 # myproject sources.
 set(MYPROJECT_SRCS
-  simple_app.cc
-  simple_app.h
+  simple_app.hpp
   simple_handler.cc
   simple_handler.h
   )

@@ -1,19 +1,22 @@
 // Copyright (c) 2013 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
+#pragma once
 
-#include "examples/myproject/simple_app.h"
+#include "include/cef_app.h"
 
-#include <string>
 #include <iostream>
+#include <string>
 
-#include "include/cef_browser.h"
+
+#include "examples/myproject/simple_handler.h"
 #include "include/base/cef_logging.h"
+#include "include/cef_browser.h"
 #include "include/cef_command_line.h"
 #include "include/views/cef_browser_view.h"
 #include "include/views/cef_window.h"
 #include "include/wrapper/cef_helpers.h"
-#include "examples/myproject/simple_handler.h"
+
 
 namespace {
 
@@ -101,9 +104,28 @@ class SimpleBrowserViewDelegate : public CefBrowserViewDelegate {
 
 }  // namespace
 
-SimpleApp::SimpleApp() = default;
+// Implement application-level callbacks for the browser process.
+class SimpleApp : public CefApp, public CefBrowserProcessHandler {
+ public:
+  SimpleApp();
 
-void SimpleApp::OnContextInitialized() {
+  // CefApp methods:
+  CefRefPtr<CefBrowserProcessHandler> GetBrowserProcessHandler() override {
+    return this;
+  }
+
+  // CefBrowserProcessHandler methods:
+  void OnContextInitialized() override;
+  CefRefPtr<CefClient> GetDefaultClient() override;
+
+ private:
+  // Include the default reference counting implementation.
+  IMPLEMENT_REFCOUNTING(SimpleApp);
+};
+
+inline SimpleApp::SimpleApp() = default;
+
+inline void SimpleApp::OnContextInitialized() {
   CEF_REQUIRE_UI_THREAD();
 
   CefRefPtr<CefCommandLine> command_line =
@@ -183,7 +205,7 @@ void SimpleApp::OnContextInitialized() {
   }
 }
 
-CefRefPtr<CefClient> SimpleApp::GetDefaultClient() {
+inline CefRefPtr<CefClient> SimpleApp::GetDefaultClient() {
   // Called when a new browser window is created via Chrome style UI.
   return SimpleHandler::GetInstance();
 }
