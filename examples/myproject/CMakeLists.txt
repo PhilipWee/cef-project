@@ -9,8 +9,7 @@
 # myproject sources.
 set(MYPROJECT_SRCS
   simple_app.hpp
-  simple_handler.cc
-  simple_handler.h
+  simple_handler.hpp
   )
 set(MYPROJECT_SRCS_LINUX
   myproject_linux.cc

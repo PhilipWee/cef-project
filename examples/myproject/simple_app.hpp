@@ -9,7 +9,7 @@
 #include <string>
 
 
-#include "examples/myproject/simple_handler.h"
+#include "examples/myproject/simple_handler.hpp"
 #include "include/base/cef_logging.h"
 #include "include/cef_browser.h"
 #include "include/cef_command_line.h"
